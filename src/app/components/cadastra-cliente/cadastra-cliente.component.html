@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-10 ">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title"><h4>Cadastro de cliente</h4></div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form [formGroup]="formCliente" (ngSubmit)="enviaForm()">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" id="nome" formControlName="nome" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="sobrenome">Sobrenome</label>
+                                        <input type="text" id="sobrenome" class="form-control"
+                                            formControlName="sobrenome" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="usuarioFinal" value="usuario"
+                                            formControlName="tipo">
+                                        <label class="form-check-label" for="usuarioFinal">Usuário Final</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="empresa" value="empresa"
+                                            formControlName="tipo">
+                                        <label class="form-check-label" for="empresa">Empresa</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="formCliente.get('tipo').value === 'usuario'">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="cpf">CPF</label>
+                                        <input ID="cpf" type="text" class="form-control" formControlName="cpf" mask="000.000.000-00"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="formCliente.get('tipo').value === 'empresa'">
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="cnpj">CNPJ</label>
+                                        <input class="form-control" type="text" id="cnpj" formControlName="cnpj" mask="00.000.000/0000-00"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="inscricaoEstadual">Inscrição Estadual</label>
+                                        <input class="form-control" type="text" id="inscricaoEstadual"
+                                            formControlName="inscricaoEstadual" />
+                                    </div>
+                                    <p class="text-muted">ISENTO caso não possua</p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="razaoSocial">Razão Social</label>
+                                        <input class="form-control" type="text" id="razaoSocial"
+                                            formControlName="razaoSocial" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="cep">CEP</label>
+                                        <input class="form-control" (keyup)="consultaCEP()" type="text" id="cep" formControlName="cep" mask="00000-000"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="endereco">Endereço</label>
+                                        <input class="form-control" type="text" id="endereco" formControlName="endereco" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="bairro">Bairro</label>
+                                        <input class="form-control" id="bairro" type="text" formControlName="bairro" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="cidade">Cidade</label>
+                                        <input class="form-control" type="text" id="cidade" formControlName="cidade" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <input class="form-control" type="text" id="estado" formControlName="estado" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="pais">País</label>
+                                        <input class="form-control" id="pais" type="text" formControlName="pais" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input class="form-control" id="email" type="text" formControlName="email" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="telefone">Telefone</label>
+                                        <input class="form-control" type="text" id="telefone" formControlName="telefone"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-2">
+                                    <div class="">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="whatsapp" formControlName="whatsapp">
+                                            <label class="form-check-label" for="whatsapp">
+                                              Tem Whatsapp?
+                                            </label>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-10">
+                                    <div class="form-group">
+                                        <label for="celular">Celular</label>
+                                        <input class="form-control" type="text" formControlName="celular" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-primary btn-block" type="submit">Salvar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
